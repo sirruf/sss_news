@@ -1,0 +1,53 @@
+<table class="table table-striped">
+  <thead>
+  <th class="text-center" width="5%">
+    <%= News::Post.human_attribute_name('id') %>
+  </th>
+  <th class="text-left" width="45%">
+    <%= News::Post.human_attribute_name('name') %>
+  </th>
+  <th class="text-center" width="10%">
+    <%= News::Post.human_attribute_name('pic_count') %>
+  </th>
+  <th class="text-center" width="20%">
+    <%= News::Post.human_attribute_name('created_at') %>
+  </th>
+  <th class="text-center" width="5%">
+    <%= News::Post.human_attribute_name('published') %>
+  </th>
+  <th class="text-center" width="10%">
+  </th>
+  </thead>
+  <tbody>
+  <% @posts.each do |post| %>
+      <tr>
+        <td class="text-center">
+          <span class="label label-info"><%= post.id %></span>
+        </td>
+        <td class="text-left">
+          <%= link_to post.name, admin_post_path(post) %>
+        </td>
+        <td class="text-center">
+          <span class="label label-info"><%= post.pictures.count %></span>
+        </td>
+        <td class="text-center">
+          <span class="label label-info"><%= l(post.created_at, format: :short) %></span>
+        </td>
+        <td class="text-center">
+          <span class="label label-info"><%= post.published ? fa_icon('plus') : fa_icon('minus') %></span>
+        </td>
+        <td class="text-center">
+          <%= link_to edit_admin_post_path(post), class: 'btn btn-default btn-sm' do %>
+              <i><i class="fa fa-edit"></i> </i>
+          <% end %>
+          <%= link_to admin_post_path(post), method: :delete, class: 'btn btn-default btn-sm' do %>
+              <i><i class="fa fa-trash-o"></i> </i>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<p>
+  <%= link_to t('buttons.new'), new_admin_post_path, class: 'btn btn-default' %>
+</p>
