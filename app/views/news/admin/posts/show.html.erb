@@ -6,27 +6,6 @@
     <table class="table table-striped">
       <tbody>
       <tr>
-        <% if @post.hot_gallery_image_url || @post.main_gallery_image_url %>
-            <td colspan="2">
-              <div class="row">
-                <% if @post.hot_gallery_image_url.present? %>
-                    <div class="col-md-6 text-center text-muted">
-                      <%= image_tag @post.hot_gallery_image_url, class: 'img-responsive' %>
-                      <div style="margin: 10px;">Изображение главной новости</div>
-                    </div>
-                <% end %>
-                <% if @post.main_gallery_image_url.present? %>
-                    <div class="col-md-6 text-center text-muted">
-                      <%= image_tag @post.main_gallery_image_url, class: 'img-responsive' %>
-                      <div style="margin: 10px;">Основное изображение новости</div>
-                    </div>
-                <% end %>
-              </div>
-            </td>
-        <% end %>
-
-      </tr>
-      <tr>
         <td style="width: 20%" class="text-right text-uppercase">
           <strong>Заголовок</strong>
         </td>
@@ -85,6 +64,28 @@
           <%= simple_format @post.body %>
         </td>
       </tr>
+      <% if @post.hot_gallery_image_url || @post.main_gallery_image_url %>
+          <% if @post.hot_gallery_image_url.present? %>
+              <tr>
+                <td style="width: 20%" class="text-right text-uppercase">
+                  <strong>Изображение главной новости</strong>
+                </td>
+                <td style="width: 80%" class="text-left">
+                  <%= image_tag @post.hot_gallery_image_url, class: 'img-responsive' %>
+                </td>
+              </tr>
+          <% end %>
+          <% if @post.main_gallery_image_url.present? %>
+              <tr>
+                <td style="width: 20%" class="text-right text-uppercase">
+                  <strong>Основное изображение новости</strong>
+                </td>
+                <td style="width: 80%" class="text-left">
+                  <%= image_tag @post.main_gallery_image_url, class: 'img-responsive' %>
+                </td>
+              </tr>
+          <% end %>
+      <% end %>
       </tbody>
     </table>
     <div class="panel-footer text-right">
