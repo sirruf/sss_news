@@ -1,24 +1,56 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    Параметры галереи <%= "'#{@gallery.name}'"  unless @gallery.new_record? %>
+    Новость <%= "'#{@post.title}'" unless @post.new_record? %>
   </div>
   <div class="panel-body">
     <table class="table table-striped">
       <tbody>
       <tr>
+        <% if @post.hot_gallery_image_url || @post.main_gallery_image_url %>
+            <td colspan="2">
+              <div class="row">
+                <% if @post.hot_gallery_image_url.present? %>
+                    <div class="col-md-6 text-center text-muted">
+                      <%= image_tag @post.hot_gallery_image_url, class: 'img-responsive' %>
+                      <div style="margin: 10px;">Изображение главной новости</div>
+                    </div>
+                <% end %>
+                <% if @post.main_gallery_image_url.present? %>
+                    <div class="col-md-6 text-center text-muted">
+                      <%= image_tag @post.main_gallery_image_url, class: 'img-responsive' %>
+                      <div style="margin: 10px;">Основное изображение новости</div>
+                    </div>
+                <% end %>
+              </div>
+            </td>
+        <% end %>
+
+      </tr>
+      <tr>
         <td style="width: 20%" class="text-right text-uppercase">
-          <strong>Название</strong>
+          <strong>Заголовок</strong>
         </td>
         <td style="width: 80%" class="text-left">
-          <%= @gallery.name %>
+          <%= @post.title %>
         </td>
       </tr>
+      <% if @post.hot %>
+          <tr>
+            <td style="width: 20%" class="text-right text-uppercase">
+              <strong>Заголовок главной</strong>
+            </td>
+            <td style="width: 80%" class="text-left">
+              <%= @post.title %>
+            </td>
+          </tr>
+      <% end %>
+
       <tr>
         <td style="width: 20%" class="text-right text-uppercase">
           <strong>Дата создания</strong>
         </td>
         <td style="width: 80%" class="text-left">
-          <%= l @gallery.created_at, format: :short %>
+          <%= l @post.created_at, format: :short %>
         </td>
       </tr>
       <tr>
@@ -26,31 +58,45 @@
           <strong>Дата изменения</strong>
         </td>
         <td style="width: 80%" class="text-left">
-          <%= l @gallery.updated_at, format: :short %>
+          <%= l @post.updated_at, format: :short %>
         </td>
       </tr>
       <tr>
         <td style="width: 20%" class="text-right text-uppercase">
-          <strong>Изображений</strong>
+          <strong>Опубликовано?</strong>
         </td>
         <td style="width: 80%" class="text-left">
-          <%= @gallery.pictures.count rescue '-' %>
+          <%= @post.published ? 'Да' : 'Нет' %>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 20%" class="text-right text-uppercase">
+          <strong>Текст</strong>
+        </td>
+        <td>
+          &nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 20%" class="text-right text-uppercase">
+          &nbsp;
+        </td>
+        <td class="text-left">
+          <%= simple_format @post.body %>
         </td>
       </tr>
       </tbody>
     </table>
     <div class="panel-footer text-right">
-      <%= link_to t('buttons.edit'), edit_admin_gallery_path(@gallery), class: 'btn btn-default' %>
-
+      <%= link_to t('buttons.edit'), edit_admin_post_path(@post), class: 'btn btn-default' %>
     </div>
   </div>
 </div>
+
 <div class="panel panel-default">
   <div class="panel-body">
     <ul id="images" class="list-unstyled">
-      <%= render partial: 'photos/admin/pictures/picture', collection: @gallery_images if @gallery_images.present? %>
+      <%= render partial: 'photos/admin/pictures/picture', collection: @post_images if @post_images.present? %>
     </ul>
   </div>
 </div>
-<p>
-</p>

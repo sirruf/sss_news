@@ -1,7 +1,24 @@
 module News
   class Post < ActiveRecord::Base
     validates :body, :title, presence: true
-    belongs_to :hot_image, class_name: 'Picture', foreign_key: 'hot_gallery_picture_id'
-    belongs_to :main_image, class_name: 'Picture', foreign_key: 'main_gallery_image_id'
+
+    def hot_gallery_image_url
+      image = Photos::Picture.find_by(id: self.hot_gallery_image_id)
+      if image.present?
+        self.hot_gallery_image_size.present? ? image.image.thumb(self.hot_gallery_image_size).url : image.image.url
+      end
+    rescue
+      nil
+    end
+
+    def main_gallery_image_url
+      image = Photos::Picture.find_by(id: self.main_gallery_image_id)
+      if image.present?
+        self.main_gallery_image_size.present? ? image.image.thumb(self.main_gallery_image_size).url : image.image.url
+      end
+    rescue
+      nil
+    end
+
   end
 end

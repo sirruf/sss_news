@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  mount News::Engine => "/news"
+  mount News::Engine => '/', as: 'news'
 end

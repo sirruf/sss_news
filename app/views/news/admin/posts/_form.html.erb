@@ -1,15 +1,15 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    Новость <%= "'#{@post.name}'" unless @post.new_record? %>
+    Новость <%= "'#{@post.title}'" unless @post.new_record? %>
   </div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-12">
         <%= form_for([:admin, @post], html: {class: "form-horizontal"}) do |f| %>
             <fieldset>
               <div class="form-group <%= 'has-error' if @post.errors[:title].present? %>">
                 <%= f.label :title, class: 'col-sm-3 control-label' %>
-                <div class="col-sm-4">
+                <div class="col-sm-9">
                   <%= f.text_field :title, class: 'form-control input-sm' %>
                   <% if @post.errors[:title].present? %>
                       <label class="control-label" for="inputError1"><%= get_devise_error(@post, :title) %></label>
@@ -17,10 +17,69 @@
                 </div>
               </div>
 
+              <div class="form-group">
+                <%= f.label :hot, class: "col-sm-3 control-label" %>
+                <div class="col-sm-2">
+                  <%= f.check_box :hot, class: "form-control" %>
+                </div>
+              </div>
+
+              <div class="form-group <%= 'has-error' if @post.errors[:hot_title].present? %>">
+                <%= f.label :hot_title, class: 'col-sm-3 control-label' %>
+                <div class="col-sm-4">
+                  <%= f.text_field :hot_title, class: 'form-control input-sm' %>
+                  <% if @post.errors[:hot_title].present? %>
+                      <label class="control-label" for="inputError1"><%= get_devise_error(@post, :hot_title) %></label>
+                  <% end %>
+                </div>
+              </div>
+
+              <% if defined?(photos).present? %>
+                  <div class="form-group <%= 'has-error' if @post.errors[:hot_gallery_image_id].present? %>">
+                    <%= f.label :hot_gallery_image_id, class: 'col-sm-3 control-label' %>
+                    <div class="col-sm-1">
+                      <%= f.text_field :hot_gallery_image_id, class: 'form-control input-sm text-center' %>
+                      <% if @post.errors[:hot_gallery_image_id].present? %>
+                          <label class="control-label" for="inputError1"><%= get_devise_error(@post, :hot_gallery_image_id) %></label>
+                      <% end %>
+                    </div>
+                    <%= f.label :hot_gallery_image_size, class: 'col-sm-2 control-label' %>
+                    <div class="col-sm-2">
+                      <%= f.text_field :hot_gallery_image_size, class: 'form-control input-sm text-center', placeholder: '200x200#' %>
+                      <% if @post.errors[:hot_gallery_image_size].present? %>
+                          <label class="control-label" for="inputError1"><%= get_devise_error(@post, :hot_gallery_image_size) %></label>
+                      <% end %>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#sizes_help" style="margin-left: 10px;">
+                      <%= fa_icon('question') %>
+                    </button>
+                  </div>
+                  <div class="form-group <%= 'has-error' if @post.errors[:main_gallery_image_id].present? %>">
+                    <%= f.label :main_gallery_image_id, class: 'col-sm-3 control-label' %>
+                    <div class="col-sm-1">
+                      <%= f.text_field :main_gallery_image_id, class: 'form-control input-sm text-center' %>
+                      <% if @post.errors[:main_gallery_image_id].present? %>
+                          <label class="control-label" for="inputError1"><%= get_devise_error(@post, :main_gallery_image_id) %></label>
+                      <% end %>
+                    </div>
+                    <%= f.label :main_gallery_image_size, class: 'col-sm-2 control-label' %>
+                    <div class="col-sm-2">
+                      <%= f.text_field :main_gallery_image_size, class: 'form-control input-sm text-center', placeholder: '200x200#' %>
+                      <% if @post.errors[:main_gallery_image_size].present? %>
+                          <label class="control-label" for="inputError1"><%= get_devise_error(@post, :main_gallery_image_size) %></label>
+                      <% end %>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#sizes_help" style="margin-left: 10px;">
+                      <%= fa_icon('question') %>
+                    </button>
+                  </div>
+              <% end %>
+
+
               <div class="form-group <%= 'has-error' if @post.errors[:body].present? %>">
                 <%= f.label :body, class: 'col-sm-3 control-label' %>
                 <div class="col-xs-9">
-                  <%= f.text_area :body, class: 'form-control input-sm' %>
+                  <%= f.text_area :body, class: 'form-control input-sm', rows: 20 %>
                 </div>
               </div>
 
@@ -42,5 +101,73 @@
 
         </div>
         </div>
+
+
+<div class="modal fade" id="sizes_help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Примеры указания требуемого размера</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped text-muted">
+          <tr>
+            <td class="text-center"><code>400x300</code></td>
+            <td>Изменить размер, сохранить пропорции</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300!</code></td>
+            <td>Изменить размер, без сохранения пропорций</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x</code></td>
+            <td>Изменить ширину, сохранить пропорции</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>x300</code></td>
+            <td>Изменить высоту, сохранить пропорции</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300<</code></td>
+            <td>Изменить размер, если изображение меньше</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300></code></td>
+            <td>Изменить размер, если изображение больше</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>50x50%></code></td>
+            <td>Изменить ширину и высоту до 50%</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300^</code></td>
+            <td>Изменить ширину, высоту до минимального 400x300, сохранить пропорции</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>2000@</code></td>
+            <td>Изменить размер до максимальной площади 2000 пикселей</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300#</code></td>
+            <td>Изменить размер, обрезать, если необходимо поддерживать соотношение сторон (центрировать)</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300#ne</code></td>
+            <td>тоже что и выше, выбрать от угла север-восток</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300se</code></td>
+            <td>обрезать, выбрать от угла север-восток</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300+50+100</code></td>
+            <td>обрезать с точки 50,100 с шириной, высотой 400,300</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
 

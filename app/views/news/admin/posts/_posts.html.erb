@@ -4,12 +4,9 @@
     <%= News::Post.human_attribute_name('id') %>
   </th>
   <th class="text-left" width="45%">
-    <%= News::Post.human_attribute_name('name') %>
+    <%= News::Post.human_attribute_name('title') %>
   </th>
-  <th class="text-center" width="10%">
-    <%= News::Post.human_attribute_name('pic_count') %>
-  </th>
-  <th class="text-center" width="20%">
+  <th class="text-center" width="30%">
     <%= News::Post.human_attribute_name('created_at') %>
   </th>
   <th class="text-center" width="5%">
@@ -25,10 +22,7 @@
           <span class="label label-info"><%= post.id %></span>
         </td>
         <td class="text-left">
-          <%= link_to post.name, admin_post_path(post) %>
-        </td>
-        <td class="text-center">
-          <span class="label label-info"><%= post.pictures.count %></span>
+          <%= link_to post.title, admin_post_path(post) %>
         </td>
         <td class="text-center">
           <span class="label label-info"><%= l(post.created_at, format: :short) %></span>
