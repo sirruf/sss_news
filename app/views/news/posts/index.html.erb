@@ -1,21 +1,21 @@
 <% @posts.published.each do |post| %>
     <div class="media">
       <div class="media-left">
-        <a href="#">
-          <% if post.hot_gallery_image_url.present? %>
-              <%= image_tag post.hot_gallery_image_url, class: 'media-object', :'data-holder-rendered'=> 'true', style: 'width: 100px; height: 100px;' %>
-              <hr>
-          <% end %>
-        </a>
+        <%= link_to post_path(post) do %>
+            <% if post.hot_gallery_image_url.present? %>
+                <%= image_tag post.hot_gallery_image_url, class: 'media-object', :'data-holder-rendered' => 'true', style: 'width: 100px; height: 100px;' %>
+                <hr>
+            <% end %>
+        <% end %>
       </div>
       <div class="media-body">
         <h4 class="media-heading" id="media-heading">
-          <%= post.title %>
+          <%= link_to post.title, post_path(post) %>
           <a class="anchorjs-link" href="#media-heading">
             <span class="anchorjs-icon"></span>
           </a>
         </h4>
-        <%= simple_format post.body %>
+        <%= truncate(post.body, length: 50, separator: '...') { link_to 'Далее', post_path(post) } %>
       </div>
     </div>
 
