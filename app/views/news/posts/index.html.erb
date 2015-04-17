@@ -3,10 +3,9 @@
       <div class="media-left">
         <a href="#">
           <% if post.hot_gallery_image_url.present? %>
-              <%= image_tag post.hot_gallery_image_url, class: 'img-responsive media-object', :'data-holder-rendered'=> 'true', style: 'width: 100px; height: 100px;' %>
+              <%= image_tag post.hot_gallery_image_url, class: 'media-object', :'data-holder-rendered'=> 'true', style: 'width: 100px; height: 100px;' %>
               <hr>
           <% end %>
-
         </a>
       </div>
       <div class="media-body">
