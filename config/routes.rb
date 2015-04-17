@@ -1,5 +1,5 @@
 News::Engine.routes.draw do
-  resources :posts
+  resources :posts, only: [:index, :show]
   namespace :admin do
     resources :posts do
     end

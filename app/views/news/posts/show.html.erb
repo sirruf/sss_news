@@ -1,0 +1,19 @@
+<!-- Title -->
+<h1><%= @post.title %></h1>
+
+<!-- Date/Time -->
+<p><%= l @post.created_at, format: :short %></p>
+
+<hr>
+
+<!-- Preview Image -->
+<% if @post.main_gallery_image_url.present? %>
+    <%= image_tag @post.main_gallery_image_url, class: 'img-responsive' %>
+    <hr>
+<% end %>
+
+<!-- Post Content -->
+<p><%= simple_format @post.body %></p>
+<hr>
+
+</div>

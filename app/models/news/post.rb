@@ -1,6 +1,7 @@
 module News
   class Post < ActiveRecord::Base
     validates :body, :title, presence: true
+    scope :published, -> { where(published: true) }
 
     def hot_gallery_image_url
       image = Photos::Picture.find_by(id: self.hot_gallery_image_id)

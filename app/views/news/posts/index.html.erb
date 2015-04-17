@@ -1,1 +1,23 @@
-asdasd
+<% @posts.published.each do |post| %>
+    <div class="media">
+      <div class="media-left">
+        <a href="#">
+          <% if post.hot_gallery_image_url.present? %>
+              <%= image_tag post.hot_gallery_image_url, class: 'img-responsive media-object', :'data-holder-rendered'=> 'true', style: 'width: 100px; height: 100px;' %>
+              <hr>
+          <% end %>
+
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading" id="media-heading">
+          <%= post.title %>
+          <a class="anchorjs-link" href="#media-heading">
+            <span class="anchorjs-icon"></span>
+          </a>
+        </h4>
+        <%= simple_format post.body %>
+      </div>
+    </div>
+
+<% end %>
