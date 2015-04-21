@@ -1,6 +1,7 @@
 module News
   class Post < ActiveRecord::Base
     validates :body, :title, presence: true
+    default_scope  { order(:created_at => :desc) }
     scope :published, -> { where(published: true) }
 
     def hot_gallery_image_url
