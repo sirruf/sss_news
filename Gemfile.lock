@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    news (0.0.6)
+    news (0.0.7)
       acts_as_list
       font-awesome-rails
       rails (~> 4.0.8)
