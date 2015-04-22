@@ -8,8 +8,8 @@
 
 <!-- Preview Image -->
 <% if @post.main_gallery_image_url.present? %>
-    <%= link_to @post.full_main_gallery_image_url do %>
-    <%= image_tag @post.main_gallery_image_url, class: 'img-responsive fancybox' %>
+    <%= link_to @post.full_main_gallery_image_url, class: 'fancybox' do %>
+    <%= image_tag @post.main_gallery_image_url, class: 'img-responsive' %>
     <% end %>
     <hr>
 <% end %>
