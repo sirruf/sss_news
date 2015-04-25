@@ -79,7 +79,7 @@
               <div class="form-group <%= 'has-error' if @post.errors[:body].present? %>">
                 <%= f.label :body, class: 'col-sm-3 control-label' %>
                 <div class="col-xs-9">
-                  <%= f.text_area :body, class: 'form-control input-sm', rows: 20 %>
+                  <%= f.text_area :body, class: 'form-control input-sm editor', rows: 20 %>
                 </div>
               </div>
 
