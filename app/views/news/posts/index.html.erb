@@ -15,7 +15,7 @@
             <span class="anchorjs-icon"></span>
           </a>
         </h4>
-        <%= truncate(post.body.html_safe, length: 50, separator: '...') { link_to 'Далее', post_path(post) } %>
+        <%= truncate(post.body.html_safe, length: 50, separator: '...', escape: false) { link_to 'Далее', post_path(post) } %>
       </div>
     </div>
 <% end %>
