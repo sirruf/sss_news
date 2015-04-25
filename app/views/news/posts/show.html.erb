@@ -15,7 +15,5 @@
 <% end %>
 
 <!-- Post Content -->
-<p><%= simple_format @post.body %></p>
+<p><%= @post.body.html_safe %></p>
 <hr>
-
-</div>
