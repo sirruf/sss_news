@@ -19,7 +19,7 @@
               <strong>Заголовок главной</strong>
             </td>
             <td style="width: 80%" class="text-left">
-              <%= @post.title %>
+              <%= @post.hot_title.html_safe %>
             </td>
           </tr>
       <% end %>
