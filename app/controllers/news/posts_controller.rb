@@ -4,6 +4,7 @@ module News
 
     def index
       @posts = Post.published.paginate(:page => params[:page], :per_page => 20)
+      @title = 'Новости клуба'
     end
 
 
