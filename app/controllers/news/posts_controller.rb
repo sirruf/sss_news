@@ -8,7 +8,8 @@ module News
 
 
     def show
-
+      @meta_keywords = @post.meta_keywords if @page.meta_keywords.present?
+      @title = @post.title
     end
 
     private
