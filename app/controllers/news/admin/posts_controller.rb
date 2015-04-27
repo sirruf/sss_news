@@ -58,7 +58,7 @@ module News
       private
 
       def post_params
-        params.require(:post).permit(:title, :body, :hot, :published, :hot_title, :hot_gallery_image_id, :hot_gallery_image_size, :main_gallery_image_id, :main_gallery_image_size )
+        params.require(:post).permit(:title, :body, :hot, :published, :hot_title, :hot_gallery_image_id, :hot_gallery_image_size, :main_gallery_image_id, :main_gallery_image_size, :meta_keywords )
       end
 
       def set_post
