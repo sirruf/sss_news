@@ -27,7 +27,7 @@
               <div class="form-group <%= 'has-error' if @post.errors[:hot_title].present? %>">
                 <%= f.label :hot_title, class: 'col-sm-3 control-label' %>
                 <div class="col-sm-4">
-                  <%= f.text_field :hot_title, class: 'form-control input-sm' %>
+                  <%= f.text_area :hot_title, class: 'form-control input-sm editor', rows: 2 %>
                   <% if @post.errors[:hot_title].present? %>
                       <label class="control-label" for="inputError1"><%= get_devise_error(@post, :hot_title) %></label>
                   <% end %>
