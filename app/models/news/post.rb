@@ -3,6 +3,7 @@ module News
     validates :body, :title, presence: true
     default_scope  { order(:created_at => :desc) }
     scope :published, -> { where(published: true) }
+    scope :hot_published, -> { where(published: true, hot: true) }
 
     def hot_gallery_image_url
       image = Photos::Picture.find_by(id: self.hot_gallery_image_id)

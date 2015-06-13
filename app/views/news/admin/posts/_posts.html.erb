@@ -3,11 +3,14 @@
   <th class="text-center" width="5%">
     <%= News::Post.human_attribute_name('id') %>
   </th>
-  <th class="text-left" width="45%">
+  <th class="text-left" width="40%">
     <%= News::Post.human_attribute_name('title') %>
   </th>
-  <th class="text-center" width="30%">
+  <th class="text-center" width="25%">
     <%= News::Post.human_attribute_name('created_at') %>
+  </th>
+  <th class="text-center" width="15%">
+    <%= News::Post.human_attribute_name('hot') %>
   </th>
   <th class="text-center" width="5%">
     <%= News::Post.human_attribute_name('published') %>
@@ -26,6 +29,9 @@
         </td>
         <td class="text-center">
           <span class="label label-info"><%= l(post.created_at, format: :short) %></span>
+        </td>
+        <td class="text-center">
+          <span class="label label-info"><%= post.hot ? fa_icon('plus') : fa_icon('minus') %></span>
         </td>
         <td class="text-center">
           <span class="label label-info"><%= post.published ? fa_icon('plus') : fa_icon('minus') %></span>

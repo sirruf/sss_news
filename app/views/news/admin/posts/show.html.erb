@@ -50,15 +50,16 @@
       </tr>
       <tr>
         <td style="width: 20%" class="text-right text-uppercase">
-          <strong>Текст</strong>
+          <strong>Ключевые слова</strong>
         </td>
-        <td>
-          &nbsp;
+        <td style="width: 80%" class="text-left">
+          <%= @post.meta_keywords %>
         </td>
       </tr>
+
       <tr>
         <td style="width: 20%" class="text-right text-uppercase">
-          &nbsp;
+          <strong>Текст</strong>
         </td>
         <td class="text-left">
           <%= @post.body.html_safe %>
