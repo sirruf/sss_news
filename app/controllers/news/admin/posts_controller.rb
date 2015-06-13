@@ -2,7 +2,7 @@ module News
   module Admin
     class PostsController < ApplicationController
       before_filter :authenticate_admin! if defined? Devise
-      before_action :set_post, only: [:show, :edit, :update, :destroy]
+      before_action :set_post, only: [:show, :edit, :update, :destroy, :first_position, :last_position, :up_position, :down_position]
 
       layout 'admin/control'
 
@@ -26,7 +26,7 @@ module News
 
         respond_to do |format|
           if @post.save
-            format.html { redirect_to edit_admin_post_path(@post), notice: 'Post was successfully created.' }
+            format.html { redirect_to admin_post_path(@post), notice: 'Post was successfully created.' }
             format.json { render action: 'show', status: :created, location: @post }
           else
             format.html { render action: 'new' }
@@ -53,6 +53,26 @@ module News
           format.html { redirect_to admin_posts_url }
           format.json { head :no_content }
         end
+      end
+
+      def up_position
+        @post.decrement_position
+        redirect_to :back
+      end
+
+      def down_position
+        @post.increment_position
+        redirect_to :back
+      end
+
+      def first_position
+        @post.move_to_top
+        redirect_to :back
+      end
+
+      def last_position
+        @post.move_to_bottom
+        redirect_to :back
       end
 
       private

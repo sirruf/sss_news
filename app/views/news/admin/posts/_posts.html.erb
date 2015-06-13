@@ -3,10 +3,13 @@
   <th class="text-center" width="5%">
     <%= News::Post.human_attribute_name('id') %>
   </th>
-  <th class="text-left" width="40%">
+  <th class="text-center" width="15%">
+    <%= News::Post.human_attribute_name('position') %>
+  </th>
+  <th class="text-left" width="30%">
     <%= News::Post.human_attribute_name('title') %>
   </th>
-  <th class="text-center" width="25%">
+  <th class="text-center" width="20%">
     <%= News::Post.human_attribute_name('created_at') %>
   </th>
   <th class="text-center" width="15%">
@@ -23,6 +26,15 @@
       <tr>
         <td class="text-center">
           <span class="label label-info"><%= post.id %></span>
+        </td>
+        <td class="text-center" width="15%">
+          <div class="btn-group" role="group" aria-label="...">
+            <%= link_to fa_icon('angle-double-up'), first_position_admin_post_path(post), method: :post, class: "btn btn-default btn-xs #{'disabled' if post.first?}" %>
+            <%= link_to fa_icon('angle-up'), up_position_admin_post_path(post), method: :post, class: "btn btn-default btn-xs #{'disabled' if post.first?}" %>
+            <button type="button" class="btn btn-default btn-xs disabled"><%= post.position %></button>
+            <%= link_to fa_icon('angle-down'), down_position_admin_post_path(post), method: :post, class: "btn btn-default btn-xs #{'disabled' if post.last?}" %>
+            <%= link_to fa_icon('angle-double-down'), last_position_admin_post_path(post), method: :post, class: "btn btn-default btn-xs  #{'disabled' if post.last?}" %>
+          </div>
         </td>
         <td class="text-left">
           <%= link_to post.title, admin_post_path(post) %>
