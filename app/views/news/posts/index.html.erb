@@ -3,7 +3,7 @@
       <div class="media-left">
         <%= link_to post_path(post) do %>
             <% if post.hot_gallery_image_url.present? %>
-                <%= image_tag post.hot_gallery_image_url, class: 'media-object', :'data-holder-rendered' => 'true', style: 'width: 100px; height: 100px;' %>
+                <%= image_tag post.hot_gallery_image_url, class: 'media-object', :'data-holder-rendered' => 'true', style: 'width: 100px; height: 100px;', title: post.hot_gallery_image_title %>
                 <hr>
             <% end %>
         <% end %>

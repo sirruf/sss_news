@@ -7,6 +7,20 @@ module News
 
     acts_as_list
 
+    def hot_gallery_image_title
+      image = Photos::Picture.find_by(id: self.hot_gallery_image_id)
+      if image.present?
+        image.name
+      end
+    end
+
+    def main_gallery_image_title
+      image = Photos::Picture.find_by(id: self.main_gallery_image_id)
+      if image.present?
+        image.name
+      end
+    end
+
     def hot_gallery_image_url
       image = Photos::Picture.find_by(id: self.hot_gallery_image_id)
       if image.present?
