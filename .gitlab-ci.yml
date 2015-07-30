@@ -7,7 +7,7 @@ rspec:
   test: "rake spec"
   tags:
     - ruby
-    - postgres
+    - sqlite
   only:
     - branches
 
