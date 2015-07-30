@@ -11,21 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415222759) do
+ActiveRecord::Schema.define(version: 20150427020200) do
 
   create_table "news_posts", force: true do |t|
     t.string   "title"
     t.text     "body"
     t.integer  "position"
     t.boolean  "published"
-    t.boolean  "hot",                     default: false
-    t.string   "hot_title"
+    t.boolean  "hot",                                 default: false
+    t.text     "hot_title",               limit: 255
     t.integer  "hot_gallery_image_id"
     t.string   "hot_gallery_image_size"
     t.integer  "main_gallery_image_id"
     t.string   "main_gallery_image_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "meta_keywords"
   end
 
 end
