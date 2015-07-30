@@ -20,9 +20,7 @@ before_script:
 # Parallel jobs, each line is a parallel build
 jobs:
   - script: “rake app:spec”
-    runner: “ruby,sqlite”
     name: “Rspec”
-    tags: true
     branches: false
 
 # Parallel deploy jobs
