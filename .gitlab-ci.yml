@@ -1,31 +1,8 @@
 before_script:
-  - gem install bundler
   - bundle install
-  - bundle exec rake db:create
-
 rspec:
-  test: "rake spec"
-  tags:
+  tags: 
     - ruby
-    - sqlite
-  only:
-    - branches
-
-staging:
-  deploy: "cap stating deploy"
-  tags:
-    - capistrano
-    - ubuntu
-  except:
-    - stable
-
-production:
-  deploy:
-    - cap production deploy
-    - cap notify
-  tags:
-    - capistrano
-    - ubuntu
-  only:
-    - master
-    - /^deploy-.*$/
+    - rspec
+  script:
+  - bundle exec rake app:spec
