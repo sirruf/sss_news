@@ -5,4 +5,5 @@ rspec:
     - ruby
     - rspec
   script:
+  - bundle exec rake db:migrate db:test:prepare
   - bundle exec rake app:spec
