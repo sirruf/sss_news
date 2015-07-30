@@ -19,12 +19,9 @@ before_script:
 
 # Parallel jobs, each line is a parallel build
 jobs:
-  - script: “rake spec”
-    runner: “ruby,postgres”
+  - script: “rake app:spec”
+    runner: “ruby,sqlite”
     name: “Rspec”
-  - script: “rake spinach”
-    runner: “ruby,mysql”
-    name: “Spinach”
     tags: true
     branches: false
 
@@ -32,4 +29,3 @@ jobs:
 on_success:
 #  - “cap deploy production”
   - “cap staging deploy”
-  
