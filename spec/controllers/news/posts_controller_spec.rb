@@ -7,7 +7,7 @@ module News
     it 'index' do
       get :index
       expect(response).to have_http_status(200)
-      expect(response).to render_template('index')
+      expect(response).to render_template('indexs')
     end
 
     it 'show' do
