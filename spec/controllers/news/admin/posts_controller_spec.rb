@@ -3,30 +3,33 @@ module News
   RSpec.describe Admin::PostsController, type: :controller do
     routes { News::Engine.routes }
 
-    it 'index' do
-      get :index
-      expect(response).to have_http_status(200)
-      expect(response).to render_template('index')
-    end
+    describe  'Render Administrative actions' do
 
-    it 'new' do
-      get :new
-      expect(response).to have_http_status(200)
-      expect(response).to render_template('new')
-    end
+      it 'index' do
+        get :index
+        expect(response).to have_http_status(200)
+        expect(response).to render_template('index')
+      end
 
-    it 'show' do
-      post = FactoryGirl.create :post
-      get :show, id: post.id
-      expect(response).to have_http_status(200)
-      expect(response).to render_template('show')
-    end
+      it 'new' do
+        get :new
+        expect(response).to have_http_status(200)
+        expect(response).to render_template('new')
+      end
 
-    it 'edit' do
-      post = FactoryGirl.create :post
-      get :edit, id: post.id
-      expect(response).to have_http_status(200)
-      expect(response).to render_template('edit')
+      it 'show' do
+        post = FactoryGirl.create :post
+        get :show, id: post.id
+        expect(response).to have_http_status(200)
+        expect(response).to render_template('show')
+      end
+
+      it 'edit' do
+        post = FactoryGirl.create :post
+        get :edit, id: post.id
+        expect(response).to have_http_status(200)
+        expect(response).to render_template('edit')
+      end
     end
 
   end

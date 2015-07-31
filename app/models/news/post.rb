@@ -12,6 +12,8 @@ module News
       if image.present?
         image.name
       end
+    rescue
+      nil
     end
 
     def main_gallery_image_title
@@ -19,6 +21,8 @@ module News
       if image.present?
         image.name
       end
+    rescue
+      nil
     end
 
     def hot_gallery_image_url
