@@ -5,5 +5,6 @@ rspec:
     - ruby
     - rspec
   script:
-  - bundle exec rake db:migrate db:test:prepare
+  - export RAILS_ENV=test
+  - bundle exec rake db:migrate
   - bundle exec rake app:spec
