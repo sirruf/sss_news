@@ -30,6 +30,13 @@ module News
         expect(response).to have_http_status(200)
         expect(response).to render_template('edit')
       end
+
+      it 'update' do
+        post = FactoryGirl.create :post
+        put :update, id: post.id, post: {title: 'Updated name'}
+        expect(response).to redirect_to(admin_post_path(post.id))
+      end
+
     end
 
   end
