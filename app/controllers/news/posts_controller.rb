@@ -3,7 +3,7 @@ module News
     before_action :set_post, only: [:show]
 
     def index
-      @posts = Post.published.paginate(:page => params[:page], :per_page => 20)
+      @posts = Post.published.paginate(:page => params[:page], :per_page => 5)
       @title = 'Новости клуба'
     end
 
