@@ -3,6 +3,7 @@ module News
     class PostsController < ApplicationController
       before_filter :authenticate_admin! if defined? Devise
       before_action :set_post, only: [:show, :edit, :update, :destroy, :first_position, :last_position, :up_position, :down_position]
+      before_action :set_breadcrumbs, only: [:index, :new, :show, :edit]
 
       layout 'admin/control'
 
@@ -12,13 +13,17 @@ module News
       end
 
       def new
+        @breadcrumbs << {name: 'Новая публикация', link: nil}
         @post = Post.new
       end
 
       def show
+        @breadcrumbs << {name: @post.title, link: nil}
       end
 
       def edit
+        @breadcrumbs << {name: @post.title, link: news.admin_post_path(@post)}
+        @breadcrumbs << {name: 'Редактирование', link: nil}
       end
 
       def create
@@ -83,6 +88,10 @@ module News
 
       def set_post
         @post = Post.find(params[:id])
+      end
+
+      def set_breadcrumbs
+        @breadcrumbs = [{name: 'Главная', link: main_app.admin_path}, {name: 'Новости', link: news.admin_posts_path}]
       end
 
     end
