@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    news (0.0.15)
+    news (0.0.16)
       acts_as_list
       factory_girl_rails
       font-awesome-rails
