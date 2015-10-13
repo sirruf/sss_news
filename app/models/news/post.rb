@@ -25,6 +25,15 @@ module News
       nil
     end
 
+    def main_gallery
+      image = Photos::Picture.find_by(id: self.main_gallery_image_id)
+      if image.present?
+        image.gallery rescue nil
+      end
+    rescue
+      nil
+    end
+
     def hot_gallery_image_url
       image = Photos::Picture.find_by(id: self.hot_gallery_image_id)
       if image.present?
