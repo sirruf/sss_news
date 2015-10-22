@@ -14,10 +14,10 @@ ru:
     attributes:
       news/post:
         id: '#'
-        title: 'Заголовок'
+        title: 'Анонс'
         body: 'Текст'
-        hot: 'Анонс на главной'
-        hot_title: 'Заголовок анонса'
+        hot: 'На главной'
+        hot_title: 'Анонс на главной'
         hot_gallery_image_id: '# главного изображения'
         hot_gallery_image_size: 'размер'
         main_gallery_image_id: '# основного изображения'
