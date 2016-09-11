@@ -12,7 +12,7 @@
 module News
   module ApplicationHelper
     def method_missing method, *args, &block
-      puts "News Module LOOKING FOR ROUTES #{method}"
+      puts "News: Looking for routes #{method}"
       if method.to_s.end_with?('_path') or method.to_s.end_with?('_url')
         if main_app.respond_to?(method)
           main_app.send(method, *args)
@@ -35,5 +35,12 @@ module News
         super
       end
     end
+  end
+end
+
+config = YAML.load_file("#{Rails.root}/config/modules_config.yml")['modules']['news']
+if config.present?
+  config.each do |key, value|
+    News.send("#{key}=", value) rescue nil
   end
 end
