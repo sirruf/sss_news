@@ -11,7 +11,6 @@
 
 module News
   module ApplicationHelper
-    include ApplicationHelper
     def method_missing method, *args, &block
       puts "News: Looking for routes #{method}"
       if method.to_s.end_with?('_path') or method.to_s.end_with?('_url')
