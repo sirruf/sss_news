@@ -9,9 +9,9 @@
             <fieldset>
 
               <div class="form-group <%= 'has-error' if @post.errors[:lang].present? %>">
-                <%= f.label :lang, class: 'col-sm-2 control-label' %>
-                <div class="col-sm-4">
-                  <%= f.select(:lang, [:en, :ru], {:include_blank => 'Auto'}, {:class => 'form-control'}) %>
+                <%= f.label :lang, class: 'col-sm-3 control-label' %>
+                <div class="col-sm-3">
+                  <%= f.select :lang, [['Английский', :en], ['Русский', :ru]], {:include_blank => 'Автоматически'}, {:class => 'form-control input-sm'}  %>
                   <% if @post.errors[:lang].present? %>
                       <label class="control-label" for="inputError1"><%= get_devise_error(@post, :lang) %></label>
                   <% end %>
