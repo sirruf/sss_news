@@ -24,6 +24,7 @@ ru:
         main_gallery_image_size: 'размер'
         published: 'Опубликовано?'
         position: 'Позиция'
+        lang: 'Язык'
     errors:
       models:
         news/post:

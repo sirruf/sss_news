@@ -14,4 +14,5 @@ module News
   require 'acts_as_list'
   require 'will_paginate'
   require 'font-awesome-rails'
+  require 'cld'
 end

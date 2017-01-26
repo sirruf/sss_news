@@ -4,6 +4,7 @@ module News
     default_scope  { order(:position) }
     scope :published, -> { where(published: true) }
     scope :hot_published, -> { unscoped.where(published: true, hot: true).order(:position) }
+    before_save :check_lang
 
     acts_as_list
 
@@ -82,6 +83,14 @@ module News
       end
     rescue
       nil
+    end
+
+    private
+
+    def check_lang
+      if !self.lang.present? || self.lang == ''
+        self.lang = CLD.detect_language(self.body)[:code]
+      end
     end
 
   end
