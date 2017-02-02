@@ -1,0 +1,3 @@
+modules:
+  news:
+    admin_namespace: 'control'
