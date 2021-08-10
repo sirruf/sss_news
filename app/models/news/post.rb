@@ -89,7 +89,8 @@ module News
 
     def check_lang
       if !self.lang.present? || self.lang == ''
-        self.lang = CLD.detect_language(self.body)[:code]
+        # self.lang = CLD.detect_language(self.body)[:code]
+        self.lang = self.body.language_iso
       end
     end
 
