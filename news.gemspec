@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency('acts_as_list', '~> 0.7')
   s.add_dependency('will_paginate', '~> 3.1')
   s.add_dependency('font-awesome-rails', '~> 4.6')
-  s.add_dependency('cld', '~> 0.8')
+  s.add_dependency('cld', '~> 0.10')
   s.add_dependency('rspec-rails', '~> 3.4')
   s.add_dependency('factory_girl_rails', '~> 4.6')
 
